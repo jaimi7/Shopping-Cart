@@ -1,7 +1,9 @@
 <script setup>
-import { RouterLink, useRouter } from 'vue-router'
+import { RouterLink, useRouter } from "vue-router";
+import { useShoesStore } from "@/stores/shoesStore";
 
-const router = useRouter()
+const router = useRouter();
+const shoesStore = useShoesStore();
 </script>
 
 <template>
@@ -13,11 +15,19 @@ const router = useRouter()
         <h2 class="text-base text-red-500 italic">Sneakers</h2>
       </div>
     </div>
+
     <div class="text-xl text-gray-600 cursor-pointer">
-      <RouterLink to="/dashboard" class="p-5 hover:text-2xl hover:text-gray-800">Home</RouterLink>
-      <RouterLink to="/" class="p-5 hover:text-2xl hover:text-gray-800">Men</RouterLink>
-      <RouterLink to="/" class="p-5 hover:text-2xl hover:text-gray-800">Women</RouterLink>
-      <RouterLink to="/" class="p-5 hover:text-2xl hover:text-gray-800">Explore</RouterLink>
+      <RouterLink to="/" class="p-5 hover:text-2xl hover:text-red-800">Home</RouterLink>
+      <RouterLink to="/" class="p-5 hover:text-2xl hover:text-red-800">Men</RouterLink>
+      <RouterLink to="/" class="p-5 hover:text-2xl hover:text-red-800">Women</RouterLink>
+      <RouterLink to="/" class="p-5 hover:text-2xl hover:text-red-800">Explore</RouterLink>
     </div>
+
+    <RouterLink to="/cart">
+      <div class="w-5.5 h-5.2 rounded-full ml-0.5 text-center bg-red-700">
+        <span class="text-white text-sm">{{ shoesStore.cartQuantity }}</span>
+      </div>
+      <img src="@/assets/img/cart.svg" alt="cart" width="25px" />
+    </RouterLink>
   </div>
 </template>

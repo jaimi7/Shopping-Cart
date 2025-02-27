@@ -61,7 +61,7 @@
     </div>
     <div v-else-if="products.length" class="flex items-center justify-evenly flex-wrap">
       <div v-for="i in products" :key="i._id"
-        class="rounded-lg w-40 sm:w-64 md:w-72 lg:w-80 mx-2 sm:mx-3 md:mx-5 my-3 sm:my-6 md:my-10 shadow-xl border border-slate-100">
+        class="rounded-lg w-40 sm:w-64 md:w-72 lg:w-80 mx-2 sm:mx-3 md:mx-5 my-3 sm:my-6 md:my-10 shadow-xl border border-slate-200">
         <img :src="i.image" :alt="i.title"
           class="rounded-lg w-full h-52 sm:h-64 md:h-80 lg:h-96 object-contain cursor-pointer"
           @click="router.push(`/product/${i._id}`)" />
@@ -70,7 +70,7 @@
             @click="router.push(`/product/${i._id}`)">
             {{ i.title }}
           </h2>
-          <p class="flex items-center justify-between text-xs sm:text-sm md:text-base font-semibold">
+          <p class="flex items-center justify-between text-xs sm:text-sm md:text-base font-semibold flex-wrap">
             <span class="text-green-600">{{ i.category }}</span>
             <span class="text-blue-700">₹ {{ i.price }}/-</span>
           </p>

@@ -1,12 +1,20 @@
 <script setup>
   import { ShoppingCartIcon } from '@heroicons/vue/24/solid'
+  import { useAuthStore } from '@/stores/authStore'
   import { useRouter } from "vue-router";
   import { ref } from 'vue';
+  import toast from '@/plugin/toast'
 
   const router = useRouter();
+  const authStore = useAuthStore()
+
   const isLogin = ref(true)
 
-  const logout = () => { }
+  const logout = () => {
+    authStore.logOut()
+    toast.success('User Logged Out successfully')
+    router.push('/login')
+  }
 </script>
 
 <template>

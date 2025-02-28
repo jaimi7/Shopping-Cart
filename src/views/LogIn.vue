@@ -60,10 +60,10 @@
   }
 
   onMounted(() => {
-    const authUser = sessionStorage.getItem('authUser')
+    const authShopper = sessionStorage.getItem('authShopper')
 
-    if (authUser) {
-      const user = JSON.parse(authUser)
+    if (authShopper) {
+      const user = JSON.parse(authShopper)
       email.value = user.email
       password.value = user.password
       isRemember.value = true
@@ -73,8 +73,7 @@
 
 <template>
   <div class="w-screen h-screen flex items-center">
-    <Form @submit="login" :validation-schema="schema" v-slot="{ errors }"
-      class="bg-yellow-100 shadow-xl w-full sm:w-2/6 mx-5 sm:m-auto p-4 sm:p-6 md:p-10">
+    <Form @submit="login" :validation-schema="schema" v-slot="{ errors }" class="auth">
       <h1 class="auth-title">Login</h1>
       <p class="auth-detail">
         Doesn't have an account yet?

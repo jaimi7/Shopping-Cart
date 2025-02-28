@@ -70,8 +70,7 @@
 
 <template>
   <div class="w-screen h-screen flex items-center">
-    <Form @submit="signUp" :validation-schema="schema" v-slot="{ errors }"
-      class="bg-yellow-100 shadow-xl w-full sm:w-2/6 mx-5 sm:m-auto p-4 sm:p-6 md:p-10">
+    <Form @submit="signUp" :validation-schema="schema" v-slot="{ errors }" class="auth">
       <h1 class="auth-title">Sign Up</h1>
       <p class="auth-detail">
         Already have an account?

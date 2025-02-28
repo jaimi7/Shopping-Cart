@@ -2,13 +2,13 @@
   import { ShoppingCartIcon } from '@heroicons/vue/24/solid'
   import { useAuthStore } from '@/stores/authStore'
   import { useRouter } from "vue-router";
-  import { ref } from 'vue';
+  import { computed } from 'vue';
   import toast from '@/plugin/toast'
 
   const router = useRouter();
   const authStore = useAuthStore()
 
-  const isLogin = ref(true)
+  const isLogin = computed(() => authStore.userData?.token ? true : false);
 
   const logout = () => {
     authStore.logOut()
@@ -27,14 +27,18 @@
       </div>
     </div>
 
+    <button v-if="!isLogin" class="button" @click="router.push('/signup')">Sign Up</button>
+
     <div v-if="isLogin" class=" flex items-center space-x-3 mr-5">
       <span class="cursor-pointer  text-gray-700 font-semibold hover:text-yellow-600 text-sm sm:text-base md:text-lg"
+        @click="router.push('/')">Home</span>
+      <span class="cursor-pointer  text-gray-700 font-semibold hover:text-yellow-600 text-sm sm:text-base md:text-lg"
         @click="logout()">Logout</span>
-      <div class="relative cursor-pointer hover:bg-yellow-50 rounded-full">
+      <div class="relative cursor-pointer hover:bg-yellow-50 rounded-full" @click="router.push('/cart')">
         <ShoppingCartIcon class="w-8 sm:w-10 p-1 md:p-2" />
         <span
           class="absolute py-0.5 sm:py-1 px-1 sm:px-2 text-xs bg-yellow-500 hover:bg-yellow-600 rounded-full -top-2 -right-2 text-white">
-          10
+          {{ authStore.cart }}
         </span>
       </div>
     </div>

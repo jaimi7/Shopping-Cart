@@ -15,7 +15,12 @@
   const products = ref([]);
   const isLoading = ref(false);
   const cart = ref([])
+  const search = ref()
 
+  const searchedProducts = computed(() => {
+    if (search.value) return products.value.filter((e) => e.title.toLowerCase().includes(search.value.toLowerCase()));
+    return products.value
+  })
   const isLogin = computed(() => authStore.userData?.token ? true : false);
 
   const getProducts = async () => {
@@ -96,11 +101,14 @@
 <template>
   <main>
     <h1 class="auth-title text-center my-2 sm:my-3 md:my-5">Products</h1>
+    <div class="px-5 sm:w-2/3 m-auto">
+      <input type="search" v-model="search" class="input" placeholder="Search Your Product">
+    </div>
     <div v-if="isLoading" class="no-data">
       <ArrowPathIcon class="loading-btn" /> Loading...
     </div>
-    <div v-else-if="products.length" class="flex items-center justify-evenly flex-wrap">
-      <div v-for="i in products" :key="i._id"
+    <div v-else-if="searchedProducts.length" class="flex items-center justify-evenly flex-wrap">
+      <div v-for="i in searchedProducts" :key="i._id"
         class="rounded-lg w-40 sm:w-64 md:w-72 lg:w-80 mx-2 sm:mx-3 md:mx-5 my-3 sm:my-6 md:my-10 shadow-xl border border-yellow-100 p-2 sm:p-3 md:p-5">
         <img :src="i.image" :alt="i.title"
           class="rounded-lg w-full h-52 sm:h-64 md:h-80 lg:h-96 object-contain cursor-pointer"

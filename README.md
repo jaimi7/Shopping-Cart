@@ -1,6 +1,12 @@
 # Shopping Cart
 
-This template should help get you started developing with Vue 3 in Vite.
+This project is a shopping cart system built with Vue.js. It provides functionality for managing products, adding and removing items from the cart, and user authentication.
+
+## Key Features
+
+- **Authentication** – Users can sign up, log in, and access their cart.
+- **Product Management** – Lists available products, supports searching by title, and displays product details on click.
+- **Cart Management** – Users can add/remove items, clear the cart, view product count, and fetch cart details.
 
 ## Recommended IDE Setup
 
@@ -33,3 +39,18 @@ npm run build
 ```sh
 npm run lint
 ```
+
+### Tech Stack
+
+- **Frontend:** Vue 3, Vite, Tailwind CSS
+- **State Management:** Pinia
+- **Validation:** vee-validate, yup
+- **Infinite Loader:** vue-infinite-scroll
+- **Notifications:** vue-toast-notification, vue-sweetalert2
+- **API Calls:** axios
+
+## GitHub Repository
+
+- See [GitHub]()
+- See [Link]()
+- See [Swagger](https://restaurant-menu-gcvp.onrender.com/api-docs)

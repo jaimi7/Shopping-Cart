@@ -13,6 +13,7 @@
   const authStore = useAuthStore()
 
   const products = ref([]);
+  const product = ref(null)
   const isLoading = ref(false);
   const cart = ref([])
   const search = ref()
@@ -92,6 +93,20 @@
       })
   }
 
+  const openSidebar = (i) => {
+    product.value = i
+    document.getElementById('sidebar').classList.add('open')
+    document.getElementById('overlay').classList.add('active')
+  }
+
+  const closeSidebar = () => {
+    product.value = null
+    setTimeout(() => {
+      document.getElementById('sidebar').classList.remove('open')
+      document.getElementById('overlay').classList.remove('active')
+    }, 200)
+  }
+
   onMounted(() => {
     getProducts();
     getCart();
@@ -112,10 +127,10 @@
         class="rounded-lg w-40 sm:w-64 md:w-72 lg:w-80 mx-2 sm:mx-3 md:mx-5 my-3 sm:my-6 md:my-10 shadow-xl border border-yellow-100 p-2 sm:p-3 md:p-5">
         <img :src="i.image" :alt="i.title"
           class="rounded-lg w-full h-52 sm:h-64 md:h-80 lg:h-96 object-contain cursor-pointer"
-          @click="router.push(`/product/${i._id}`)" />
+          @click="openSidebar(i)" />
         <div class="pt-2 sm:pt-3 md:pt-5">
           <h2 class="text-gray-800 font-semibold ellipsis-2 cursor-pointer text-sm md:text-base"
-            @click="router.push(`/product/${i._id}`)">
+            @click="openSidebar(i)">
             {{ i.title }}
           </h2>
           <p class="flex items-center justify-between text-xs sm:text-sm md:text-base font-semibold flex-wrap">
@@ -137,6 +152,23 @@
     <div v-else class="no-data">
       <NoSymbolIcon class="loading-btn" /> No Product Available
     </div>
+
+    <div class="block sm:hidden overlay" id="overlay" @click="closeSidebar()"></div>
+    <div class="sidebar p-5 shadow-xl" id="sidebar" @click="closeSidebar()">
+      <!-- {{ product }} -->
+      <h3 class="text-yellow-700 font-bold text-base sm:text-2xl">{{ product?.title }}</h3>
+      <p class="flex items-center justify-between text-xs sm:text-sm md:text-base font-semibold flex-wrap">
+        <span class="text-green-600">{{ product?.category }}</span>
+        <span class="text-blue-700">₹ {{ product?.price }}/-</span>
+      </p>
+
+      <img :src="product?.image" :alt="product?.title"
+        class="border border-yellow-100 my-2 sm:my-3 md:my-5 rounded-lg w-full h-52 sm:h-64 md:h-80 lg:h-96 object-contain cursor-pointer">
+
+      <p class="text-xs sm:text-sm text-gray-600 my-1 sm:my-2 md:my-3 w-full">
+        {{ product?.description }}
+      </p>
+    </div>
   </main>
 </template>
 
@@ -153,5 +185,49 @@
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
     overflow: hidden;
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 0;
+    right: -400px;
+    width: 400px;
+    height: 100%;
+    background: #fff;
+    transition: 0.3s;
+  }
+
+  .sidebar.open {
+    box-shadow: 0px 0px 12px 0px #999;
+    right: 0;
+  }
+
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    display: none;
+  }
+
+  .overlay.active {
+    display: block;
+  }
+
+  @media screen and (max-width: 640px) {
+    .sidebar {
+      right: -200px;
+      width: 200px;
+      max-width: 100vw;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .sidebar {
+      right: -300px;
+      width: 300px;
+    }
   }
 </style>

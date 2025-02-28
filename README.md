@@ -53,4 +53,4 @@ npm run lint
 
 - See [GitHub](https://github.com/jaimipatel-Al/Shopping-Cart-Website)
 - See [Link](https://shopping-cart-website-ebon.vercel.app/)
-- See [Swagger](https://restaurant-menu-gcvp.onrender.com/api-docs)
+- See [Swagger](https://shopping-cart-backend-iae5.onrender.com/api-docs)

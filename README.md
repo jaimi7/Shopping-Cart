@@ -51,6 +51,6 @@ npm run lint
 
 ## GitHub Repository
 
-- See [GitHub]()
-- See [Link]()
+- See [GitHub](https://github.com/jaimipatel-Al/Shopping-Cart-Website)
+- See [Link](https://shopping-cart-website-ebon.vercel.app/)
 - See [Swagger](https://restaurant-menu-gcvp.onrender.com/api-docs)
